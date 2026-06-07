@@ -23,5 +23,11 @@ public interface ISistema {
 	
 	public boolean eliminarMago(String nombreMago);
 	
+	public boolean modificarNombreMago(String nombreActual, String nuevoNombre);
+
+	public boolean agregarHechizoAMago(String nombreMago, String nombreHechizo);
+
+	public boolean quitarHechizoDeMago(String nombreMago, String nombreHechizo);
+	
 	
 }

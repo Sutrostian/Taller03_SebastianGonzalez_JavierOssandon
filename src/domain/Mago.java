@@ -39,5 +39,24 @@ public class Mago {
 	
 	
 	
+	public boolean eliminarHechizo(String nombreHechizo) {
+		
+		for(int i = 0; i < hechizos.size(); i++) {
+			
+			if(hechizos.get(i).getNombreHechizo().equalsIgnoreCase(nombreHechizo)) {
+				
+				hechizos.remove(i);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	
+	
+	
 
 }

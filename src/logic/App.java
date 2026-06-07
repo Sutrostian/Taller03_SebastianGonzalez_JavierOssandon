@@ -76,10 +76,89 @@ public class App {
 					}
 						
 						
-					case"2":
-										
-						break;
+					case"2":{
+
+						System.out.print("Ingrese nombre del mago: ");
+						String nombreMagoModificar = s.nextLine();
 						
+						if(sistema.buscarMago(nombreMagoModificar) == null) {
+							
+							System.out.println("El mago no existe.");
+							break;
+						}
+						
+						System.out.println("1. Cambiar nombre.");
+						System.out.println("2. Agregar hechizo.");
+						System.out.println("3. Quitar hechizo.");
+						System.out.print("Seleccione una opcion > ");
+						
+						String opcionModificar = s.nextLine();
+						
+						switch(opcionModificar) {
+						
+						case "1":
+							
+							System.out.print("Ingrese nuevo nombre: ");
+							String nuevoNombre = s.nextLine();
+							
+							if(sistema.modificarNombreMago(nombreMagoModificar, nuevoNombre)) {
+								
+								sistema.guardarMagos();
+								System.out.println("Nombre modificado correctamente.");
+							}
+							
+							break;
+							
+						case "2":
+							
+							System.out.print("Ingrese nombre del hechizo: ");
+							String nombreHechizoAgregar = s.nextLine();
+							
+							if(sistema.agregarHechizoAMago(nombreMagoModificar, nombreHechizoAgregar)) {
+								
+								sistema.guardarMagos();
+								System.out.println("Hechizo agregado correctamente.");
+							}
+							else {
+								
+								System.out.println("No se pudo agregar el hechizo.");
+							}
+							
+							break;
+							
+						case "3":
+							
+							System.out.print("Ingrese nombre del hechizo: ");
+							String nombreHechizoEliminar = s.nextLine();
+							
+							if(sistema.quitarHechizoDeMago(nombreMagoModificar, nombreHechizoEliminar)) {
+								
+								sistema.guardarMagos();
+								System.out.println("Hechizo eliminado correctamente.");
+							}
+							else {
+								
+								System.out.println("El hechizo no pertenece al mago.");
+							}
+							
+							break;
+							
+						default:
+							System.out.println("Opcion invalida.");
+							break;
+						}
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						break;
+					}
 					case"3":{
 
 						System.out.print("Ingrese nombre del mago a eliminar: ");

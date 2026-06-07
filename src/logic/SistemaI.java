@@ -212,5 +212,60 @@ public class SistemaI implements ISistema {
 	}
 	
 	
+	@Override
+	public boolean modificarNombreMago(String nombreActual, String nuevoNombre) {
+		
+		Mago m = buscarMago(nombreActual);
+		
+		if(m == null) {
+			return false;
+		}
+		
+		m.setNombreMago(nuevoNombre);
+		
+		return true;
+	}
+	
+	
+	@Override
+	public boolean agregarHechizoAMago(String nombreMago, String nombreHechizo) {
+		
+		Mago m = buscarMago(nombreMago);
+		Hechizo h = buscarHechizo(nombreHechizo);
+		
+		if(m == null || h == null) {
+			return false;
+		}
+		
+		for(Hechizo hechizo : m.getHechizos()) {
+			
+			if(hechizo.getNombreHechizo().equalsIgnoreCase(nombreHechizo)) {
+				return false;
+			}
+		}
+		
+		m.agregarHechizo(h);
+		
+		return true;
+	}
+	
+	
+	
+	@Override
+	public boolean quitarHechizoDeMago(String nombreMago, String nombreHechizo) {
+		
+		Mago m = buscarMago(nombreMago);
+		
+		if(m == null) {
+			return false;
+		}
+		
+		return m.eliminarHechizo(nombreHechizo);
+	}
+	
+	
+	
+	
+	
 	
 }
