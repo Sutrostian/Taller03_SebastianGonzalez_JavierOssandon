@@ -390,7 +390,8 @@ public class App {
 			case "5": {
 				System.out.println("===== HECHIZOS CON PUNTUACION =====");
 				for (Hechizo h : sistema.getHechizos()) {
-					System.out.println(h.getNombreHechizo() + " [" + h.getTipo() + "] - Puntaje: " + h.calcularPuntaje());
+					System.out
+							.println(h.getNombreHechizo() + " [" + h.getTipo() + "] - Puntaje: " + h.calcularPuntaje());
 				}
 				break;
 			}
@@ -443,15 +444,16 @@ public class App {
 		} while (!opcion.equals("0"));
 	}
 
-	private static int leerEntero(String valor) { // eric ross leia con metodos, asi ahorramos codigo y controlamos errores altiro
-	    while (true) {
-	        try {
-	            return Integer.parseInt(valor);
-	        } catch (NumberFormatException e) {
-	            System.out.println("Ingrese un numero valido.");
-	            System.out.print("> ");
-	            valor = s.nextLine();
-	        }
-	    }
+	private static int leerEntero(String valor) { // eric ross leia con metodos, asi ahorramos codigo y controlamos
+													// errores altiro
+		while (true) {
+			try {
+				return Integer.parseInt(valor);
+			} catch (NumberFormatException e) {
+				System.out.println("Ingrese un numero valido.");
+				System.out.print("> ");
+				valor = s.nextLine();
+			}
+		}
 	}
 }
