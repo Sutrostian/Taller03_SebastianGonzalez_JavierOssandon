@@ -14,7 +14,7 @@ public class App {
 				
 		sistema.LeerHechizos();
 		sistema.LeerMagos();
-	    panelAdministrador();
+	    menuPrincipal();
     
 		s.close();
 	}
@@ -31,7 +31,7 @@ public class App {
 					System.out.println("4. Agregar Hechizo.");
 					System.out.println("5. Modificar Hechizo.");
 					System.out.println("6. Eliminar Hechizo.");
-					System.out.println("0. Salir.");
+					System.out.println("0. Volver.");
 					System.out.print("Seleccione una opcion >");
 					
 					opcion = s.nextLine();
@@ -303,7 +303,6 @@ public class App {
 						
 					case "0":
 						System.out.println("");
-						System.out.println("Adios :3");
 						break;
 						
 					default:
@@ -370,4 +369,22 @@ public class App {
 				}while(!opcion.equals("0")); //Mientras sea distinto de 0
 				
 			}
+	private static void menuPrincipal() {
+	    String opcion;
+	    do {
+	        System.out.println("===== MENU PRINCIPAL =====");
+	        System.out.println("1. Panel Administrador.");
+	        System.out.println("2. Panel Analista.");
+	        System.out.println("0. Salir.");
+	        System.out.print("Seleccione una opcion > ");
+	        opcion = s.nextLine();
+
+	        switch(opcion) {
+	            case "1": panelAdministrador(); break;
+	            case "2": panelAnalista(); break;
+	            case "0": System.out.println("Adios :3"); break;
+	            default: System.out.println("Opcion invalida."); break;
+	        }
+	    } while(!opcion.equals("0"));
+	}
 }

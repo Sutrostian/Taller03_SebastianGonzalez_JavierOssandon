@@ -26,6 +26,7 @@ public class HechizoTierra extends Hechizo implements ICalcularP{
 	public double calcularPuntaje() {
 		
 		return (dano * mejoraDefensa) / 2.0;
+		
 	}
 
 	
