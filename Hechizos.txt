@@ -89,3 +89,5 @@ Tierra Viva;Tierra;46;36
 Origen Pulso;Agua;21;30,208
 Bucle Arena;Planta;15;2,8
 CAPADEPROTECCIONINFORMATICA;Tierra;1000000;999999999
+capadeproteccion;fuego;777;78
+pulsar;agua;777;8,2
