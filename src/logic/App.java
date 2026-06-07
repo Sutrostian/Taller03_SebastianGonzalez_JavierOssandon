@@ -72,7 +72,7 @@ public class App {
 
 							System.out.println("Mago agregado correctamente.");
 						}
-						
+						break;
 					}
 						
 						
@@ -179,10 +179,80 @@ public class App {
 										
 					
 					}
-					case"4":
+					case"4":{
+
+						System.out.print("Ingrese nombre del hechizo: ");
+						String nombreHechizo = s.nextLine();
+
+						if(nombreHechizo.trim().isEmpty()) {
+
+							System.out.println("Debe ingresar un nombre.");
+							break;
+						}
+
+						if(sistema.buscarHechizo(nombreHechizo) != null) {
+
+							System.out.println("El hechizo ya existe.");
+							break;
+						}
+
+						System.out.print("Ingrese tipo (Fuego/Tierra/Planta/Agua): ");
+						String tipo = s.nextLine();
+
+						System.out.print("Ingrese daño: ");
+						int dano = Integer.parseInt(s.nextLine());
+
+						int atributo1 = 0;
+						int atributo2 = 0;
+
+						if(tipo.equalsIgnoreCase("Fuego")) {
+
+							System.out.print("Ingrese duración quemadura: ");
+							atributo1 = Integer.parseInt(s.nextLine());
+						}
+
+						else if(tipo.equalsIgnoreCase("Tierra")) {
+
+							System.out.print("Ingrese mejora defensa: ");
+							atributo1 = Integer.parseInt(s.nextLine());
+						}
+
+						else if(tipo.equalsIgnoreCase("Planta")) {
+
+							System.out.print("Ingrese duración stun: ");
+							atributo1 = Integer.parseInt(s.nextLine());
+
+							System.out.print("Ingrese cantidad plantas: ");
+							atributo2 = Integer.parseInt(s.nextLine());
+						}
+
+						else if(tipo.equalsIgnoreCase("Agua")) {
+
+							System.out.print("Ingrese cantidad heal: ");
+							atributo1 = Integer.parseInt(s.nextLine());
+
+							System.out.print("Ingrese presión agua: ");
+							atributo2 = Integer.parseInt(s.nextLine());
+						}
+
+						else {
+
+							System.out.println("Tipo inválido.");
+							break;
+						}
+
+						sistema.crearHechizo(nombreHechizo, tipo, dano, atributo1, atributo2);
+						sistema.guardarHechizos();
+
+						System.out.println("Hechizo agregado correctamente.");
+
+						break;
+					}
+						
+					
 					
 						
-						break;
+						
 						
 					case"5":
 						

@@ -264,7 +264,76 @@ public class SistemaI implements ISistema {
 	}
 	
 	
-	
+	@Override
+	public void guardarHechizos() {
+		
+		File arch = new File("Hechizos.txt");
+		
+		try {
+			
+			BufferedWriter bw = new BufferedWriter(new FileWriter(arch));
+			
+			for(Hechizo h : hechizos) {
+				
+				if(h instanceof HechizoFuego) {
+					
+					HechizoFuego hf = (HechizoFuego) h;
+					
+					bw.write(
+							hf.getNombreHechizo() + ";" +
+							hf.getTipo() + ";" +
+							hf.getDano() + ";" +
+							hf.getDuracionQuemadura()
+							);
+				}
+				
+				if(h instanceof HechizoTierra) {
+					
+					HechizoTierra ht = (HechizoTierra) h;
+					
+					bw.write(
+							ht.getNombreHechizo() + ";" +
+							ht.getTipo() + ";" +
+							ht.getDano() + ";" +
+							ht.getMejoraDefensa()
+							);
+				}
+				
+				if(h instanceof HechizoPlanta) {
+					
+					HechizoPlanta hp = (HechizoPlanta) h;
+					
+					bw.write(
+							hp.getNombreHechizo() + ";" +
+							hp.getTipo() + ";" +
+							hp.getDano() + ";" +
+							hp.getDuracionStun() + "," +
+							hp.getCantPlantas()
+							);
+				}
+				
+				if(h instanceof HechizoAgua) {
+					
+					HechizoAgua ha = (HechizoAgua) h;
+					
+					bw.write(
+							ha.getNombreHechizo() + ";" +
+							ha.getTipo() + ";" +
+							ha.getDano() + ";" +
+							ha.getCantidadHeal() + "," +
+							ha.getPresionAgua()
+							);
+				}
+				
+				bw.newLine();
+			}
+			
+			bw.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

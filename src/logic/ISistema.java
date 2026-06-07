@@ -29,5 +29,7 @@ public interface ISistema {
 
 	public boolean quitarHechizoDeMago(String nombreMago, String nombreHechizo);
 	
+	public void guardarHechizos();
+	
 	
 }
