@@ -1,5 +1,8 @@
 package logic;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import domain.*;
 
 
@@ -92,4 +95,71 @@ public class SistemaI implements ISistema {
 	    }
 		
 	}
+	
+
+	@Override
+	public void LeerHechizos() {
+		File arch = new File("Hechizos.txt");
+		try {
+			Scanner lector = new Scanner(arch);
+			while(lector.hasNextLine()) {
+				String [] partes = lector.nextLine().split(";");
+				String nombreHechizo = partes[0];
+				String tipo = partes[1];
+				int dano = Integer.parseInt(partes[2]);
+				int atributo1 = 0;
+	            int atributo2 = 0;
+	            
+	            if(tipo.equalsIgnoreCase("Agua") || tipo.equalsIgnoreCase("Planta")) { 
+
+	            String[] atributos = partes[3].split(",");
+
+	            atributo1 = Integer.parseInt(atributos[0]);
+	            atributo2 = Integer.parseInt(atributos[1]);
+	            
+	            }else { 
+
+	            atributo1 = Integer.parseInt(partes[3]);
+	            }
+				crearHechizo(nombreHechizo, tipo, dano, atributo1, atributo2);
+			}
+			lector.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	@Override
+	public void LeerMagos() {
+		File arch = new File("Magos.txt");
+		try {
+			Scanner lector = new Scanner(arch);
+			while(lector.hasNextLine()) {
+				String [] partes = lector.nextLine().split(";");
+				String nombreMago = partes[0];
+				String[] hechizos = partes[1].split("\\|");
+				crearMago(nombreMago, null);
+				
+				Mago m = buscarMago(nombreMago); //creamos un mago sin hechizos
+				
+				for(String nombreHechizo : hechizos) { // recorremos String[] hechizos
+
+	                Hechizo h = buscarHechizo(nombreHechizo);
+
+	                if(h != null) { // si el hechizo existe entre todos los hechizos del sistema, lo agregamos.
+	                    m.agregarHechizo(h);
+	                }
+	            }
+			}
+			lector.close();
+		}catch (Exception e) {
+			e.printStackTrace();	
+		}
+	}
+	
+	
+	
 }

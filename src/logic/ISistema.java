@@ -14,4 +14,8 @@ public interface ISistema {
 	public void mostrarHechizos();
 
 	public void mostrarMagos();
+	
+	public void LeerHechizos();
+	
+	public void LeerMagos();
 }

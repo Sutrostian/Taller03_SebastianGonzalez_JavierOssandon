@@ -13,76 +13,27 @@ public class App {
 	public static void main(String[] args) {
 		
 		
-		leerHechizos();
-		leerMagos();
+		sistema.LeerHechizos();
+		sistema.LeerMagos();
 		sistema.mostrarHechizos();
 	    System.out.println();
 	    sistema.mostrarMagos();
+	    
+	    panelAdministrador();
+	    
+	    
+	    
+	    
+	    
 		s.close();
 	}
 	
-	private static void leerMagos() {
-		File arch = new File("Magos.txt");
-		try {
-			Scanner lector = new Scanner(arch);
-			while(lector.hasNextLine()) {
-				String [] partes = lector.nextLine().split(";");
-				String nombreMago = partes[0];
-				String[] hechizos = partes[1].split("\\|");
-				sistema.crearMago(nombreMago, null);
-				
-				Mago m = sistema.buscarMago(nombreMago); //creamos un mago sin hechizos
-				
-				for(String nombreHechizo : hechizos) { // recorremos String[] hechizos
-
-	                Hechizo h = sistema.buscarHechizo(nombreHechizo);
-
-	                if(h != null) { // si el hechizo existe entre todos los hechizos del sistema, lo agragamos.
-	                    m.agregarHechizo(h);
-	                }
-	            }
-			}
-			lector.close();
-		}catch (Exception e) {
-			e.printStackTrace();	
-		}
-	}
-
-	private static void leerHechizos() {
-		File arch = new File("Hechizos.txt");
-		try {
-			Scanner lector = new Scanner(arch);
-			while(lector.hasNextLine()) {
-				String [] partes = lector.nextLine().split(";");
-				String nombreHechizo = partes[0];
-				String tipo = partes[1];
-				int dano = Integer.parseInt(partes[2]);
-				int atributo1 = 0;
-	            int atributo2 = 0;
-	            
-	            if(tipo.equalsIgnoreCase("Agua") || tipo.equalsIgnoreCase("Planta")) { // si estamos en Agua o Planta
-
-	            String[] atributos = partes[3].split(","); // porque ya no va separado por ; ahora es por (,) entonces me guarda (atr1,atr2)
-
-	            atributo1 = Integer.parseInt(atributos[0]);
-	            atributo2 = Integer.parseInt(atributos[1]);
-	            
-	            }else { //si estamos en Fuego o Tierra
-
-	            atributo1 = Integer.parseInt(partes[3]);
-	            }
-				sistema.crearHechizo(nombreHechizo, tipo, dano, atributo1, atributo2);
-			}
-			lector.close();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
+	
 
 	private static void panelAdministrador() {
 		String opcion;
-				
+	
 				do {
 					
 					System.out.println("===== PANEL ADMINISTRADOR =====");
@@ -92,7 +43,7 @@ public class App {
 					System.out.println("4. Agregar Hechizo.");
 					System.out.println("5. Modificar Hechizo.");
 					System.out.println("6. Eliminar Hechizo.");
-					System.out.println("0. Volver.");
+					System.out.println("0. Salir.");
 					System.out.print("Seleccione una opcion >");
 					
 					opcion = s.nextLine();
@@ -100,6 +51,8 @@ public class App {
 					switch(opcion) {
 					
 					case"1":
+						
+			
 						
 						break;
 						
@@ -125,6 +78,7 @@ public class App {
 						
 					case "0":
 						System.out.println("");
+						System.out.println("Seguro de salir?");
 						break;
 						
 					default:
