@@ -2,8 +2,8 @@
 //Javier Ignacio Ossandon Calderon - 21.979.689-2 - Ingenieria Civil Industrial - javierossand/itsvoiiid
 package logic;
 import java.util.Scanner;
+
 import domain.*;
-import java.io.File;
 
 public class App {
 
@@ -11,26 +11,14 @@ public class App {
 	private static ISistema sistema = new SistemaI();
 	
 	public static void main(String[] args) {
-		
-		
+				
 		sistema.LeerHechizos();
 		sistema.LeerMagos();
-		sistema.mostrarHechizos();
-	    System.out.println();
-	    sistema.mostrarMagos();
-	    
 	    panelAdministrador();
-	    
-	    
-	    
-	    
-	    
+    
 		s.close();
 	}
 	
-	
-	
-
 	private static void panelAdministrador() {
 		String opcion;
 	
@@ -254,12 +242,64 @@ public class App {
 						
 						
 						
-					case"5":
+					case "5": 
+					    System.out.print("Ingrese nombre del hechizo a modificar: ");
+					    String nombreHechizoMod = s.nextLine();
+					    
+					    Hechizo h = sistema.buscarHechizo(nombreHechizoMod);
+					    
+					    if(h == null) {
+					        System.out.println("El hechizo no existe.");
+					        break;
+					    }
+					    
+					    System.out.println("Tipo: " + h.getTipo());
+					    System.out.print("Ingrese nuevo daño: ");
+					    int nuevoDano = Integer.parseInt(s.nextLine());
+					    
+					    int nuevoAtributo1 = 0;
+					    int nuevoAtributo2 = 0;
+					    
+					    if(h instanceof HechizoFuego) {
+					        System.out.print("Ingrese nueva duración quemadura: ");
+					        nuevoAtributo1 = Integer.parseInt(s.nextLine());
+					    }
+					    else if(h instanceof HechizoTierra) {
+					        System.out.print("Ingrese nueva mejora defensa: ");
+					        nuevoAtributo1 = Integer.parseInt(s.nextLine());
+					    }
+					    else if(h instanceof HechizoPlanta) {
+					        System.out.print("Ingrese nueva duración stun: ");
+					        nuevoAtributo1 = Integer.parseInt(s.nextLine());
+					        System.out.print("Ingrese nueva cantidad plantas: ");
+					        nuevoAtributo2 = Integer.parseInt(s.nextLine());
+					    }
+					    else if(h instanceof HechizoAgua) {
+					        System.out.print("Ingrese nueva cantidad heal: ");
+					        nuevoAtributo1 = Integer.parseInt(s.nextLine());
+					        System.out.print("Ingrese nueva presión agua: ");
+					        nuevoAtributo2 = Integer.parseInt(s.nextLine());
+					    }
+					    
+					    sistema.modificarHechizo(nombreHechizoMod, nuevoDano, nuevoAtributo1, nuevoAtributo2);
+					    sistema.guardarHechizos();
+					    System.out.println("Hechizo modificado correctamente.");
+					    break;
+					
 						
-						break;
-						
-					case"6":
-						break;
+					case "6": 
+					    System.out.print("Ingrese nombre del hechizo a eliminar: ");
+					    String nombreHechizoEliminar = s.nextLine();
+
+					    if(sistema.eliminarHechizo(nombreHechizoEliminar)) {
+					        sistema.guardarHechizos();
+					        sistema.guardarMagos();
+					        System.out.println("Hechizo eliminado correctamente.");
+					    } else {
+					        System.out.println("El hechizo no existe.");
+					    }
+					    break;
+					
 						
 					case "0":
 						System.out.println("");

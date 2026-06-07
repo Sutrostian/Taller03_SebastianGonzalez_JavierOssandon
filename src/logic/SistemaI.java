@@ -141,21 +141,25 @@ public class SistemaI implements ISistema {
 		try {
 			Scanner lector = new Scanner(arch);
 			while(lector.hasNextLine()) {
-				String [] partes = lector.nextLine().split(";");
-				String nombreMago = partes[0];
-				String[] hechizos = partes[1].split("\\|");
-				crearMago(nombreMago, null);
-				
-				Mago m = buscarMago(nombreMago); //creamos un mago sin hechizos
-				
-				for(String nombreHechizo : hechizos) { // recorremos String[] hechizos
+			    String linea = lector.nextLine().trim();
+			    if(linea.isEmpty()) continue;
 
-	                Hechizo h = buscarHechizo(nombreHechizo);
+			    String[] partes = linea.split(";");
+			    String nombreMago = partes[0];
 
-	                if(h != null) { // si el hechizo existe entre todos los hechizos del sistema, lo agregamos.
-	                    m.agregarHechizo(h);
-	                }
-	            }
+			    crearMago(nombreMago, null);
+			    Mago m = buscarMago(nombreMago);
+
+			    // si es que hay algo después del ";"
+			    if(partes.length > 1 && !partes[1].trim().isEmpty()) { //el .trim es para elimina espacios en blanco de un string
+			        String[] hechizosNombres = partes[1].split("\\|");
+			        for(String nombreHechizo : hechizosNombres) {
+			            Hechizo h = buscarHechizo(nombreHechizo.trim());
+			            if(h != null) {
+			                m.agregarHechizo(h);
+			            }
+			        }
+			    }
 			}
 			lector.close();
 		}catch (Exception e) {
@@ -333,6 +337,50 @@ public class SistemaI implements ISistema {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean eliminarHechizo(String nombreHechizo) {
+	    for(int i = 0; i < hechizos.size(); i++) {
+	        if(hechizos.get(i).getNombreHechizo().equalsIgnoreCase(nombreHechizo)) {
+	            // Como hay que eliminarlo de todos los magos, hacemos esto
+	            for(Mago m : magos) {
+	                m.eliminarHechizo(nombreHechizo);
+	            }
+	            hechizos.remove(i);
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+	@Override
+	public boolean modificarHechizo(String nombreHechizo, int dano, int atributo1, int atributo2) {
+		
+	    Hechizo h = buscarHechizo(nombreHechizo); //buscamos el echizo
+	    
+	    if(h == null) return false;  //si no existe no hay nada que modificar
+	    
+	    h.setDano(dano);
+	    
+	    //hacemos casting a h para poder usar los metodos que le corresponda segun su tipo
+	    
+	    if(h instanceof HechizoFuego) { //si h es de fuego
+	        ((HechizoFuego) h).setDuracionQuemadura(atributo1);
+	    }
+	    else if(h instanceof HechizoTierra) { //si h es de tierra
+	        ((HechizoTierra) h).setMejoraDefensa(atributo1);
+	    }
+	    else if(h instanceof HechizoPlanta) { //si h es de planta
+	        ((HechizoPlanta) h).setDuracionStun(atributo1);
+	        ((HechizoPlanta) h).setCantPlantas(atributo2);
+	    }
+	    else if(h instanceof HechizoAgua) { //si h es de agua
+	        ((HechizoAgua) h).setCantidadHeal(atributo1);
+	        ((HechizoAgua) h).setPresionAgua(atributo2);
+	    }
+	    
+	    return true;
 	}
 	
 	

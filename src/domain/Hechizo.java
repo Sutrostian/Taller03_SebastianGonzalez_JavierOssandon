@@ -1,6 +1,6 @@
 package domain;
 
-public abstract class Hechizo {
+public abstract class Hechizo implements ICalcularP{
 	
 	protected String nombreHechizo;
 	protected String tipo;
@@ -36,6 +36,8 @@ public abstract class Hechizo {
 	public void setDano(int dano) {
 		this.dano = dano;
 	}
+	
+	public abstract double calcularPuntaje();
 
 	@Override
 	public String toString() {

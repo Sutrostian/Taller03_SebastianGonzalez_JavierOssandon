@@ -1,6 +1,6 @@
 package domain;
 
-public class HechizoFuego extends Hechizo {
+public class HechizoFuego extends Hechizo implements ICalcularP {
 	
 	private int duracionQuemadura;
 	
@@ -21,6 +21,14 @@ public class HechizoFuego extends Hechizo {
 	public String toString() {
 	    return super.toString() + " HechizoFuego [duracionQuemadura=" + duracionQuemadura + "]";
 	}
+
+	@Override
+	public double calcularPuntaje() {
+		
+		return dano * duracionQuemadura;
+		
+	}
+
 
 	
 	

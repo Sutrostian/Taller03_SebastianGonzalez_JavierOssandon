@@ -1,6 +1,6 @@
 package domain;
 
-public class HechizoTierra extends Hechizo {
+public class HechizoTierra extends Hechizo implements ICalcularP{
 	
 	private int mejoraDefensa;
 	
@@ -20,6 +20,12 @@ public class HechizoTierra extends Hechizo {
 	@Override
 	public String toString() {
 	    return super.toString() + " HechizoTierra [mejoraDefensa=" + mejoraDefensa + "]";
+	}
+
+	@Override
+	public double calcularPuntaje() {
+		
+		return (dano * mejoraDefensa) / 2.0;
 	}
 
 	

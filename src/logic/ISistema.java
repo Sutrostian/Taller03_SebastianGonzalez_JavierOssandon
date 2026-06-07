@@ -31,5 +31,9 @@ public interface ISistema {
 	
 	public void guardarHechizos();
 	
+	public boolean eliminarHechizo(String nombreHechizo);
+	
+	public boolean modificarHechizo(String nombreHechizo, int dano, int atributo1, int atributo2);
+	
 	
 }
