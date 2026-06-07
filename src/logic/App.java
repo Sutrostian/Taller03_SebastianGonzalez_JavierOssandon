@@ -51,6 +51,9 @@ public class App {
 					switch(opcion) {
 					
 					case"1":
+						System.out.println("Elegiste la opcion 1");
+						sistema.crearMago("Prueba", null);
+						sistema.guardarMagos();
 						
 			
 						

@@ -2,6 +2,9 @@ package logic;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 import domain.*;
 
@@ -157,6 +160,37 @@ public class SistemaI implements ISistema {
 			lector.close();
 		}catch (Exception e) {
 			e.printStackTrace();	
+		}
+	}
+	
+	@Override
+	public void guardarMagos() {
+		File arch = new File("Magos.txt");
+		
+		try {
+			
+			BufferedWriter bw = new BufferedWriter(new FileWriter(arch));
+			
+			for(Mago m : magos) {
+				
+				bw.write(m.getNombreMago() + ";");
+				
+				for(int i = 0; i < m.getHechizos().size(); i++) {
+					
+					bw.write(m.getHechizos().get(i).getNombreHechizo());
+					
+					if(i < m.getHechizos().size() - 1) {
+						bw.write("|");
+					}
+				}
+				
+				bw.newLine();
+			}
+			
+			bw.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

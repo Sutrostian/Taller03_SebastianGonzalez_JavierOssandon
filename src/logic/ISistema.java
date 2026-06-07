@@ -18,4 +18,8 @@ public interface ISistema {
 	public void LeerHechizos();
 	
 	public void LeerMagos();
+	
+	public void guardarMagos();
+	
+	
 }
