@@ -383,6 +383,25 @@ public class SistemaI implements ISistema {
 	    return true;
 	}
 	
+	@Override
+	public ArrayList<Hechizo> getHechizos() {
+	    return hechizos;
+	}
+
+	@Override
+	public ArrayList<Mago> getMagos() {
+	    return magos;
+	}
+
+	@Override
+	public double calcularPuntajeMago(Mago mago) {
+	    double total = 0;
+	    for(Hechizo h : mago.getHechizos()) {
+	        total += h.calcularPuntaje();
+	    }
+	    return total;
+	}
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 //Sebastian Andres Gonzalez Rossi - 21.186.016-2 - Ingenieria Civil Industrial - Sutrostian
 //Javier Ignacio Ossandon Calderon - 21.979.689-2 - Ingenieria Civil Industrial - javierossand/itsvoiiid
 package logic;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import domain.*;
@@ -135,17 +136,10 @@ public class App {
 							System.out.println("Opcion invalida.");
 							break;
 						}
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
+							
 						break;
+						
+						//AQUI TERMINA EL SUBMENU PARA NO CONFUNDIR
 					}
 					case"3":{
 
@@ -289,9 +283,9 @@ public class App {
 						
 					case "6": 
 					    System.out.print("Ingrese nombre del hechizo a eliminar: ");
-					    String nombreHechizoEliminar = s.nextLine();
+					    String hechizoAEliminar = s.nextLine();
 
-					    if(sistema.eliminarHechizo(nombreHechizoEliminar)) {
+					    if(sistema.eliminarHechizo(hechizoAEliminar)) {
 					        sistema.guardarHechizos();
 					        sistema.guardarMagos();
 					        System.out.println("Hechizo eliminado correctamente.");
@@ -333,13 +327,66 @@ public class App {
 					
 					switch(opcion) {
 					
-					case"1":
+					case "1": 
+					    ArrayList<Hechizo> ranking = new ArrayList<>(sistema.getHechizos());
+					    
+					    // Ordenamos de mayor a menor puntaje
+					    for(int i = 0; i < ranking.size() - 1; i++) { //recorremos ranking desde 0 hasta el ultimo
+					        for(int j = 0; j < ranking.size() - 1 - i; j++) { //recorremos ranking desde 0 hasta el uultimo
+					            if(ranking.get(j).calcularPuntaje() < ranking.get(j+1).calcularPuntaje()) { //si el anterior es menor al siguiente
+					                Hechizo temp = ranking.get(j); // guardamos el anterior
+					                ranking.set(j, ranking.get(j+1)); // donde estaba el anterior metemos el siguiente
+					                ranking.set(j+1, temp); // donde estaba el siguiente metemos el anterior
+					            }
+					        }
+					    }
+					    
+					    System.out.println("===== TOP 10 MEJORES HECHIZOS =====");
+					    
+					    int limite;
+					    if(ranking.size() < 10) { // si hay menos de 10 en el ranking
+					        limite = ranking.size(); // el limite sera el size
+					    } else {
+					        limite = 10; // si no seran los top 10
+					    }
+					    
+					    for(int i = 0; i < limite; i++) {
+					        System.out.println((i+1) + ". " + ranking.get(i).getNombreHechizo() + " - Puntaje: " + ranking.get(i).calcularPuntaje());
+					    }
+					    break;
+					
+					
 						
-						break;
-						
-					case"2":
-										
-						break;
+					case "2": {
+					    ArrayList<Mago> rankingMagos = new ArrayList<>(sistema.getMagos());
+					    
+					    //ordenaremos con la misma logica del case 1 de mayor a menor
+					    for(int i = 0; i < rankingMagos.size() - 1; i++) { 
+					        for(int j = 0; j < rankingMagos.size() - 1 - i; j++) {
+					            if(sistema.calcularPuntajeMago(rankingMagos.get(j)) < sistema.calcularPuntajeMago(rankingMagos.get(j+1))) {
+					                Mago temp = rankingMagos.get(j);
+					                rankingMagos.set(j, rankingMagos.get(j+1));
+					                rankingMagos.set(j+1, temp);
+					            }
+					        }
+					    }
+					    
+					    System.out.println("===== TOP 3 MEJORES MAGOS =====");
+					    
+					    int limiteMagos;
+					    if(rankingMagos.size() < 3) { // si hay menos de 3 magos, l limite es el size
+					        limiteMagos = rankingMagos.size();
+					    } else {
+					        limiteMagos = 3; // si no hacemos el top 3 normal
+					    }
+					    
+					    for(int i = 0; i < limiteMagos; i++) { // printeamos
+					        System.out.println((i+1) + ". " + rankingMagos.get(i).getNombreMago() + " - Puntaje: " + sistema.calcularPuntajeMago(rankingMagos.get(i)));
+					    }
+					    break;
+					}
+					
+					
 						
 					case"3":
 										

@@ -1,4 +1,6 @@
 package logic;
+import java.util.ArrayList;
+
 import domain.*;
 
 public interface ISistema {
@@ -34,6 +36,12 @@ public interface ISistema {
 	public boolean eliminarHechizo(String nombreHechizo);
 	
 	public boolean modificarHechizo(String nombreHechizo, int dano, int atributo1, int atributo2);
+	
+	public ArrayList<Hechizo> getHechizos();
+	
+	public ArrayList<Mago> getMagos();
+	
+	public double calcularPuntajeMago(Mago mago);
 	
 	
 }
