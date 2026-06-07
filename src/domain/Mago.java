@@ -34,7 +34,13 @@ public class Mago {
 
 	@Override
 	public String toString() {
-		return "Mago [nombreMago=" + nombreMago + ", hechizos=" + hechizos + "]";
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Mago: ").append(nombreMago).append("\n");
+	    sb.append("  Hechizos:\n");
+	    for(Hechizo h : hechizos) {
+	        sb.append("    - ").append(h.getNombreHechizo()).append(" [").append(h.getTipo()).append("]\n");
+	    }
+	    return sb.toString();
 	}
 	
 	

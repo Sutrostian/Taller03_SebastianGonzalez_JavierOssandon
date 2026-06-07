@@ -16,7 +16,6 @@ public class App {
 		sistema.LeerHechizos();
 		sistema.LeerMagos();
 	    menuPrincipal();
-    
 		s.close();
 	}
 	
@@ -385,18 +384,22 @@ public class App {
 					    }
 					    break;
 					}
+								
+					case "3": 
+					    System.out.println("===== TODOS LOS HECHIZOS =====");
+					    for(Hechizo h : sistema.getHechizos()) {
+					        System.out.println(h);
+					    }
+					    break;
 					
+						
+					case "4": 
+					    System.out.println("===== TODOS LOS MAGOS =====");
+					    for(Mago m : sistema.getMagos()) {
+					        System.out.println(m);
+					    }
+					    break;
 					
-						
-					case"3":
-										
-						break;
-						
-					case"4":
-					
-						
-						break;
-						
 					case"5":
 						
 						break;

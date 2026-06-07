@@ -41,7 +41,7 @@ public abstract class Hechizo implements ICalcularP{
 
 	@Override
 	public String toString() {
-		return "Hechizo [nombreHechizo=" + nombreHechizo + ", tipo=" + tipo + ", dano=" + dano + "]";
+	    return nombreHechizo + " [" + tipo + "] - Daño: " + dano;
 	}
 	
 	
