@@ -50,23 +50,56 @@ public class App {
 					
 					switch(opcion) {
 					
-					case"1":
-						System.out.println("Elegiste la opcion 1");
-						sistema.crearMago("Prueba", null);
-						sistema.guardarMagos();
+					case"1":{
+
+						System.out.print("Ingrese nombre del mago: ");
+						String nombreMago = s.nextLine();
+
+						if(nombreMago.trim().isEmpty()) {
+
+							System.out.println("Debe ingresar un nombre.");
+
+						}
+						else if(sistema.buscarMago(nombreMago) != null) {
+
+							System.out.println("El mago ya existe.");
+
+						}
+						else {
+
+							sistema.crearMago(nombreMago, null);
+							sistema.guardarMagos();
+
+							System.out.println("Mago agregado correctamente.");
+						}
 						
-			
+					}
 						
-						break;
 						
 					case"2":
 										
 						break;
 						
-					case"3":
-										
+					case"3":{
+
+						System.out.print("Ingrese nombre del mago a eliminar: ");
+						String nombreMagoEliminar = s.nextLine();
+
+						if(sistema.eliminarMago(nombreMagoEliminar)) {
+
+							sistema.guardarMagos();
+
+							System.out.println("Mago eliminado correctamente.");
+
+						}else {
+
+							System.out.println("El mago no existe.");
+						}
+
 						break;
-						
+										
+					
+					}
 					case"4":
 					
 						
@@ -81,7 +114,7 @@ public class App {
 						
 					case "0":
 						System.out.println("");
-						System.out.println("Seguro de salir?");
+						System.out.println("Adios :3");
 						break;
 						
 					default:

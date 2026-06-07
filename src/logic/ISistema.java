@@ -21,5 +21,7 @@ public interface ISistema {
 	
 	public void guardarMagos();
 	
+	public boolean eliminarMago(String nombreMago);
+	
 	
 }

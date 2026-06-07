@@ -196,4 +196,21 @@ public class SistemaI implements ISistema {
 	
 	
 	
+	@Override
+	public boolean eliminarMago(String nombreMago) {
+
+		for(int i = 0; i < magos.size(); i++) {
+
+			if(magos.get(i).getNombreMago().equalsIgnoreCase(nombreMago)) {
+
+				magos.remove(i);
+				return true;
+			}
+		}
+
+		return false;
+	}
+	
+	
+	
 }
