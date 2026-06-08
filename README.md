@@ -1,4 +1,4 @@
-🧙# Taller 3 - Programación Orientada a Objetos
+# 🧙Taller 3 - Programación Orientada a Objetos
 
 **Carrera:** Ingeniería Civil Industrial
 **Universidad:** Universidad Católica del Norte (UCN)
